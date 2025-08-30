@@ -1,0 +1,6 @@
+Order ID,Order Date,Customer,Region,Category,Sub-Category,Sales,Quantity,Discount,Profit,Items
+CA-2019-1001,2019-01-03,John Doe,West,Furniture,Chairs,410,3,0.1,30,"Chair;Table"
+CA-2019-1002,2019-01-04,Jane Smith,East,Technology,Phones,900,5,0.2,120,"iPhone;Charger;Case"
+CA-2019-1003,2019-01-05,Alice Lee,South,Office Supplies,Paper,35,10,0,5,"Paper Pack"
+CA-2019-1004,2019-02-10,Bob Kim,Central,Furniture,Bookcases,120,2,0.05,15,"Bookcase"
+CA-2019-1005,2019-02-12,Sara Khan,West,Technology,Laptops,1200,1,0.15,200,"Laptop;Mouse"

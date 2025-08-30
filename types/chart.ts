@@ -1,9 +1,5 @@
 export type UniversalChartFormat = {
-  columns: [
-    { id: "x"; type: "dimension" },
-    { id: "y"; type: "measure" },
-    { id: "series"; type: "dimension"; optional?: true }
-  ];
+  columns: { id: string; type: "dimension" | "measure" }[];
   rows: { x: string | number | Date; y: number; series?: string }[];
 };
 

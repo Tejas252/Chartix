@@ -31,26 +31,26 @@ const COLORS = [
 ]
 
 const sampleData: UniversalChartFormat ={
-  columns: [
-    { id: "x", type: "dimension" },
-    { id: "y", type: "measure" },
-    { id: "series", type: "dimension", optional: true },
+  "columns": [
+      {
+          "id": "Customer & Sales Person",
+          "type": "dimension",
+          "datatype": "string"
+      },
+      {
+          "id": "Net Sales Total",
+          "type": "measure",
+          "datatype": "number"
+      }
   ],
-  rows: [
-    { x: "Jan", y: 45, series: "2024" },
-    { x: "Feb", y: 55, series: "2024" },
-    { x: "Mar", y: 60, series: "2024" },
-    { x: "Apr", y: 70, series: "2024" },
-    { x: "May", y: 65, series: "2024" },
-    { x: "Jun", y: 80, series: "2024" },
-    { x: "Jan", y: 50, series: "2025" },
-    { x: "Feb", y: 60, series: "2025" },
-    { x: "Mar", y: 58, series: "2025" },
-    { x: "Apr", y: 75, series: "2025" },
-    { x: "May", y: 68, series: "2025" },
-    { x: "Jun", y: 90, series: "2025" },
-  ],
-};
+  "rows": [
+    { x: "2019-01", y: 410, series: "Furniture" },
+    { x: "2019-01", y: 900, series: "Technology" },
+    { x: "2019-01", y: 35,  series: "Office Supplies" },
+    { x: "2019-02", y: 120, series: "Furniture" },
+    { x: "2019-02", y: 1200, series: "Technology" }
+  ]
+}
 
 export function ChartPreview() {
   const total = data.reduce((a, b) => a + b.value, 0)

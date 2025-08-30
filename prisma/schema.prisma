@@ -8,6 +8,15 @@ datasource db {
   url       = env("DATABASE_URL")
   directUrl = env("DIRECT_URL")
 }
+
+generator pothos {
+    provider    = "prisma-pothos-types"
+    // Enable prismaUtils feature
+    prismaUtils = true
+
+    // output       = "../pothos/plugin-prisma/generated.ts"
+    // clientOutput = "@prisma/client"
+}
         
 enum Role {
   OWNER
