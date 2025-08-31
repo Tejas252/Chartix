@@ -1,5 +1,7 @@
 # 📊 Chartix
 
+![Chartix Demo](./public/visulization-preview.png)
+
 Chartix is an **AI-powered chart builder**.  
 Upload your **CSV/XLSX files**, then use **natural language prompts** to generate different types of charts instantly.
 
