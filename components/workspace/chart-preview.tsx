@@ -52,10 +52,9 @@ const sampleData: UniversalChartFormat ={
   ]
 }
 
-export function ChartPreview() {
-  const total = data.reduce((a, b) => a + b.value, 0)
+export function ChartPreview({chartData,loading}: {chartData?: UniversalChartFormat, loading?: boolean}) {
   const [chartType, setChartType] = useState<ChartType>("bar");
-  const [size, setSize] = useState({ width: 500, height: 300 });
+  const [size, setSize] = useState({ width: 650, height: 420 });
 
   return (
     <div className="flex h-full w-full flex-col">
@@ -71,22 +70,7 @@ export function ChartPreview() {
 
       <div className="grid flex-1 grid-cols-1 place-items-center px-2 pb-4 md:px-6">
         <Card className="relative flex h-full w-full max-w-5xl items-center justify-center p-4">
-          <div className="w-full max-w-3xl pb-16">
-            <ResponsiveContainer width="100%" height={360}> 
-              <div className="p-4 w-full h-[60vh]">
-                <ResizableChart 
-                  type={chartType} 
-                  data={sampleData} 
-                  onResize={(size) => setSize(size)}
-                  width={size.width}
-                  height={size.height}
-                  annotations={[{ x: "Feb", label: "Spike", color: "green" }]} 
-                />
-              </div>
-            </ResponsiveContainer>
-          </div>
-
-          <div className="pointer-events-none absolute inset-x-0 bottom-3 z-10 flex justify-center">
+        <div className="pointer-events-none absolute inset-x-0 bottom-3 z-10 flex justify-center">
             <ChartControls
               chartType={chartType}
               size={size}
@@ -94,6 +78,23 @@ export function ChartPreview() {
               onSizeChange={setSize}
             />
           </div>
+          <div className="w-full max-w-3xl pb-16">
+            <ResponsiveContainer width="100%" height={500}> 
+              <div className="p-4 w-full h-[60vh]">
+                {chartData ?
+                <ResizableChart 
+                  type={chartType} 
+                  data={chartData} 
+                  onResize={(size) => setSize(size)}
+                  width={size.width}
+                  height={size.height}
+                  annotations={[{ x: "Feb", label: "Spike", color: "green" }]} 
+                /> : loading ? <p>Loading chart data...</p> :   <p>No chart data available</p>}
+              </div>
+            </ResponsiveContainer>
+          </div>
+
+          
         </Card>
       </div>
     </div>

@@ -7,7 +7,10 @@ export function transformToApex(
   type: ChartType,
   annotations: ChartAnnotation[] = []
 ) {
-  const { rows } = data;
+  let { rows } = data;
+
+  rows = rows.filter((row)=> !['null','undefined','NaN',undefined,null,'']?.includes(row?.y))
+
 
   let series: any[] = [];
   let options: any = {

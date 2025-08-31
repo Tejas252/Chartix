@@ -240,6 +240,7 @@ model Message {
   latencyMs      Int?
   tokenIn        Int?
   tokenOut       Int?
+  chart          Chart?
 
   createdAt DateTime @default(now())
 
@@ -274,6 +275,9 @@ model Chart {
   conversation   Conversation? @relation(fields: [conversationId], references: [id], onDelete: SetNull)
   conversationId String?
 
+  messageId String @unique
+  message Message @relation(fields: [messageId], references: [id], onDelete: Cascade)
+
   versions   ChartVersion[]
   shares     ChartShareLink[]
 
@@ -284,6 +288,8 @@ model Chart {
   @@index([teamId])
   @@index([folderId])
   @@index([fileId])
+  @@index([conversationId])
+  @@index([messageId])
 }
 
 model ChartVersion {

@@ -52,7 +52,6 @@ aq.addFunction("formatMonthName", formatMonthName);
 aq.addFunction("formatWeek", formatWeek);
 
 export function executeSteps(data: object, steps: Step[]): any[] {
-  console.log("🚀 ~ executeSteps ~ data:", data)
   let t = aq.table(data);
 
 
@@ -132,11 +131,9 @@ export function executeSteps(data: object, steps: Step[]): any[] {
   
           // ✅ Convert grouped map → row array
           const pivoted = Array.from(grouped.values());
-          console.log("🚀 ~ executeSteps ~ pivoted:", pivoted)
   
           // ✅ Convert row array → column dictionary
           const pivotedColumns = rowsToColumns(pivoted);
-          console.log("🚀 ~ executeSteps ~ pivotedColumns:", pivotedColumns)
   
           // ✅ Reinitialize table
           t = aq.table(pivotedColumns);

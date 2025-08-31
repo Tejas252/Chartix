@@ -63,9 +63,14 @@ export default function IngestBar() {
   async function handleUpload() {
     if (!files.length) {
       // allow navigation with only prompts
-      router.push(
-        `/workspace?prompt=${encodeURIComponent(promptPrimary)}&prompt2=${encodeURIComponent(promptSecondary)}`,
-      )
+      // router.push(
+      //   `/workspace?prompt=${encodeURIComponent(promptPrimary)}&prompt2=${encodeURIComponent(promptSecondary)}`,
+      // )
+      toast({
+        title: "Please upload a CSV or Excel file.",
+        description: "Please upload a CSV or Excel file.",
+        variant: "destructive",
+      })
       return
     }
     try {
@@ -79,14 +84,13 @@ export default function IngestBar() {
         title: "Upload successful",
         description: "Your file has been uploaded successfully.",
       })
-      if (!res.ok || !json?.ok) {
-        throw new Error(json?.message || "Upload failed")
+      if (!json?.conversationId) {
+        throw new Error("Upload failed")
       }
-      const keys = (json.files as { key: string }[]).map((f) => f.key).join(",")
       router.push(
-        `/workspace?keys=${encodeURIComponent(keys)}&prompt=${encodeURIComponent(
+        `/workspace/${json?.conversationId}?prompt=${encodeURIComponent(
           promptPrimary,
-        )}&prompt2=${encodeURIComponent(promptSecondary)}`,
+        )}`,
       )
     } catch (e) {
       console.error("[v0] upload error:", e)

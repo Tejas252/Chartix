@@ -46,27 +46,27 @@ function parseDate(v: string | Date | number)  {
 // Your formatters
 export function formatDate(v: string | Date) {
   console.log("🚀 ~ formatDate ~ v:", v)
-  return parseDate(v).format("YYYY-MM-DD");
+  return v ? parseDate(v).format("YYYY-MM-DD") : "";
 }
 export function formatMonth(v: string | Date) {
   console.log("🚀 ~ formatMonth ~ v:", v)
-  return parseDate(v).format("YYYY-MM");
+  return v ? parseDate(v).format("YYYY-MM") : "";
 }
 export function formatYear(v: string | Date) {
-  return parseDate(v).format("YYYY");
+  return v ? parseDate(v).format("YYYY") : "";
 }
 export function formatQuarter(v: string | Date) {
   const m = parseDate(v);
-  return `Q${m.quarter()}-${m.year()}`;
+  return `Q${m?.quarter()}-${m?.year()}`;
 }
 export function formatDayOfWeek(v: string | Date) {
-  return parseDate(v).format("dddd");
+  return v ? parseDate(v).format("dddd") : "";
 }
 export function formatMonthName(v: string | Date) {
-  return parseDate(v).format("MMMM");
+  return v ? parseDate(v).format("MMMM") : "";
 }
 export function formatWeek(v: string | Date) {
-  return parseDate(v).format("GGGG-[W]WW");
+  return v ? parseDate(v).format("GGGG-[W]WW") : "";
 }
 
 

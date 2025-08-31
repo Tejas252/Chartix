@@ -17,10 +17,7 @@ const prisma = new PrismaClient({});
 const builder = new SchemaBuilder<{
     PrismaTypes: PrismaTypes;
     Scalars: {
-        JSON: {
-            Input: typeof GraphQLJSON,
-            Output: typeof GraphQLJSON,
-        },
+        JSON: { Input: unknown; Output: unknown }
         DateTime: {
             Input: Date,
             Output: Date,

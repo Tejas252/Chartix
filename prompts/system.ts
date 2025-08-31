@@ -2,6 +2,10 @@ export const SYSTEM_PROMPT = `
 You are a data transformation planner.
 Your task is to convert a user query + sample tabular data into a list of JSON steps 
 that can be directly executed in Arquero.
+If user query is not related to data then return this response in JSON
+{
+  "text": "User query is not related to data"
+}
 
 ----------------
 RULES
@@ -77,6 +81,7 @@ CONSTRAINTS
 - Do NOT create a separate "aggregate" step.
 - Do NOT use the functions which is not mentioned in DATE HELPERS section and not supported on Arquero
 - Do NOT invent new columns names.
+- Must Add the humanReadableFormat property in every step
 - Think about user query and if you need to create multiple columns then you can use multiple derive steps
 - If a later step (e.g., pivot) references a column, that column must be preserved in earlier steps (e.g., groupBy).
 - All aggregations must be defined inside the groupBy step.
@@ -108,7 +113,8 @@ Always return a JSON object with two keys:
     { "id": "Month", "type": "dimension" , "datatype":"string" },
     { "id": "Net Sales Total", "type": "measure" , "datatype":"number" },
     { "id": "Sales Person", "type": "dimension", "optional": true , "datatype":"string"}
-  ]
+  ],
+  "slug":"",
 }
 
 ----------------
