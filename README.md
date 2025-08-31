@@ -30,5 +30,5 @@ Upload your **CSV/XLSX files**, then use **natural language prompts** to generat
 
 Clone the repo:
 ```bash
-git clone https://github.com/<your-username>/chartix.git
+git clone https://github.com/Tejas252/chartix.git
 cd chartix
