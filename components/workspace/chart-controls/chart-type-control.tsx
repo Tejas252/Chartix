@@ -10,19 +10,20 @@ import {
 import { CHART_TYPES } from "./types";
 import { ChartType } from "@/types/chart";
 
-interface ChartTypeControlProps {
-  chartType: ChartType;
-  onChartTypeChange: (type: ChartType) => void;
-}
+import { ChartTypeControlProps } from "./types";
 
-export function ChartTypeControl({ chartType, onChartTypeChange }: ChartTypeControlProps) {
+export function ChartTypeControl({ chartType, onChartTypeChange, isMobile = false }: ChartTypeControlProps) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="sm" className="h-8 gap-1.5 px-2.5 text-xs">
-          <PieChartIcon className="h-3.5 w-3.5" />
-          <span>Chart Type</span>
-          <ChevronDown className="h-3.5 w-3.5 opacity-50" />
+        <Button 
+          variant="ghost" 
+          size={isMobile ? "icon" : "sm"} 
+          className={`${isMobile ? 'h-9 w-9' : 'h-8 px-2.5'} gap-1.5 text-xs`}
+        >
+          <PieChartIcon className={`${isMobile ? 'h-4 w-4' : 'h-3.5 w-3.5'}`} />
+          {!isMobile && <span>Chart Type</span>}
+          {!isMobile && <ChevronDown className="h-3.5 w-3.5 opacity-50" />}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-40">

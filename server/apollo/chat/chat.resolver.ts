@@ -1,7 +1,6 @@
 import { getGenerativeModel } from "@/lib/ai/models";
 import builder from "@/lib/pothos-builder";
 import { prisma } from "@/lib/prisma";
-import { supabaseClient } from "@/lib/supabase";
 import { extractDataFromFileBuffer, getFirstFiveRowsAsString } from "@/lib/utils/file-utils";
 import { markDownToJson } from "@/lib/utils/json-parser";
 import { SYSTEM_PROMPT } from "@/prompts/system";
@@ -94,18 +93,19 @@ builder.queryType({
                 })
             }
         }),
-        getConversation: t.prismaField({
-            type: "Conversation",
-            args: {
-                id: t.arg({ type: "String", required: true })
-            },
+        getConversations: t.prismaField({
+            type: ["Conversation"],
             authScopes:{
                 isAuthenticated: true
             },
             resolve: async (query, root, args, context, info) => {
-                return await prisma.conversation.findUnique({
-                    where: { id: args?.id,userId: context?.me?.id },
+                const data =  await prisma.conversation.findMany({
+                    where: { userId: context?.me?.id },
+                    orderBy: {
+                        createdAt: "desc"
+                    }
                 })
+                return data
             }
         })
     })

@@ -10,17 +10,34 @@ export function ChartControls({
   size,
   onChartTypeChange,
   onSizeChange,
-}: ChartControlsProps) {
+  isMobile = false,
+}: ChartControlsProps & { isMobile?: boolean }) {
   return (
     <nav
       aria-label="Chart tools"
-      className="pointer-events-auto inline-flex items-center gap-1.5 rounded-full border bg-background/80 px-2 py-1.5 shadow-md backdrop-blur"
+      className={`pointer-events-auto inline-flex items-center gap-1.5 ${
+        isMobile 
+          ? 'rounded-lg border-0 bg-background/90 shadow-lg' 
+          : 'rounded-full border bg-background/80 shadow-md'
+      } px-2 py-1.5 backdrop-blur`}
     >
-      <ChartSizeControl size={size} onSizeChange={onSizeChange} />
-      <ChartTypeControl chartType={chartType} onChartTypeChange={onChartTypeChange} />
-      <ChartToolButton icon={<Palette className="h-4 w-4" />} label="Color" />
-      <ChartToolButton icon={<Edit3 className="h-4 w-4" />} label="Annotate" />
-      <ChartToolButton icon={<Database className="h-4 w-4" />} label="Edit data" />
+      <ChartSizeControl size={size} onSizeChange={onSizeChange} isMobile={isMobile} />
+      <ChartTypeControl chartType={chartType} onChartTypeChange={onChartTypeChange} isMobile={isMobile} />
+      <ChartToolButton 
+        icon={<Palette className="h-4 w-4" />} 
+        label="Color" 
+        isMobile={isMobile}
+      />
+      <ChartToolButton 
+        icon={<Edit3 className="h-4 w-4" />} 
+        label="Annotate" 
+        isMobile={isMobile}
+      />
+      <ChartToolButton 
+        icon={<Database className="h-4 w-4" />} 
+        label="Edit data" 
+        isMobile={isMobile}
+      />
     </nav>
   );
 }

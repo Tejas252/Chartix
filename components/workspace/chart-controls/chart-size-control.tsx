@@ -4,20 +4,19 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { ChartToolButton } from "./chart-tool-button";
-import { ChartSize } from "./types";
+import { ChartSize, ChartSizeControlProps } from "./types";
 
-interface ChartSizeControlProps {
-  size: ChartSize;
-  onSizeChange: (size: ChartSize) => void;
-}
-
-export function ChartSizeControl({ size, onSizeChange }: ChartSizeControlProps) {
+export function ChartSizeControl({ size, onSizeChange, isMobile = false }: ChartSizeControlProps) {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <ChartToolButton icon={<Ruler className="h-4 w-4" />} label="Size" />
+        <ChartToolButton 
+          icon={<Ruler className={isMobile ? "h-4 w-4" : "h-4 w-4"} />} 
+          label="Size" 
+          isMobile={isMobile}
+        />
       </PopoverTrigger>
-      <PopoverContent className="w-80 p-4" align="end">
+      <PopoverContent className={`${isMobile ? 'w-[calc(100vw-2rem)]' : 'w-80'} p-4`} align={isMobile ? 'center' : 'end'}>
         <div className="space-y-4">
           <h4 className="font-medium leading-none">Chart Size</h4>
           <div className="grid gap-4">
