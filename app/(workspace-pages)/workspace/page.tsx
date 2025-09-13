@@ -5,14 +5,11 @@ import IngestBar from "@/components/ingest-bar"
 import { FileSpreadsheet } from "lucide-react"
 import { GET_CONVERSATIONS } from "@/client/graphql/conversastion/conversastion.query"
 import { useQuery } from "@apollo/client/react"
-import { Conversation } from "@prisma/client"
+import { Conversation } from "@/prisma/generated/client"
 import { ScrollArea } from "@/components/ui/scroll-area"
 
 export default function Page() {
     const { data:conData,loading:conLoading,error:conError } = useQuery(GET_CONVERSATIONS)
-    console.log("🚀 ~ Page ~ conData:", conData)
-    console.log("🚀 ~ Page ~ conLoading:", conLoading)
-    console.log("🚀 ~ Page ~ conError:", conError)
   return (
     <main className="flex min-h-dvh flex-col h-full w-full items-center justify-center">
       <section className="flex-1 px-6 py-10 md:px-10">

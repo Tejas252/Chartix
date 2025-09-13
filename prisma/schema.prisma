@@ -1,6 +1,8 @@
 
 generator client {
-  provider = "prisma-client-js"
+  provider = "prisma-client"
+  output   = "../prisma/generated"
+  engineType = "nodejs"
 }
 
 datasource db {
@@ -13,9 +15,10 @@ generator pothos {
     provider    = "prisma-pothos-types"
     // Enable prismaUtils feature
     prismaUtils = true
-
-    // output       = "../pothos/plugin-prisma/generated.ts"
-    // clientOutput = "@prisma/client"
+    clientOutput = "@/prisma/generated"
+    output       = "../pothos/plugin-prisma/generated.ts"
+    generateDatamodel = true
+    documentation     = false
 }
         
 enum Role {

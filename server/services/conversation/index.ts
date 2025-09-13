@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/prisma";
-import { MessageRole } from "@prisma/client";
+import { MessageRole } from "@/prisma/generated/client";
 
 export const createConversation = async ({
     title,

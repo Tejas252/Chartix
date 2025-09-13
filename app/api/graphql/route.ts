@@ -25,14 +25,20 @@ const apolloServer = new ApolloServer({
 // Create the handler with database connection and context
 const handler = startServerAndCreateNextHandler(apolloServer, {
     context: async (req: Request): Promise<Context> => {
-        const me = await requireUser();
-        // Allow unauthenticated access - let individual resolvers handle authorization
-        if (!me) {
-            throw new Error("Unauthorized");
-        }
+        try {
+            const me = await requireUser();
+            // Allow unauthenticated access - let individual resolvers handle authorization
+            if (!me) {
+                throw new Error("Unauthorized");
+            }
 
-        const origin = req.headers.get('Origin') || "";
-        return { me, origin };
+            const origin = req.headers.get('Origin') || "";
+            return { me, origin };
+        } catch (error) {
+            console.error("🚀 ~ error:CONTEXT CREATION FAILED", error)
+            return { me: null, origin: "" };
+        }
+        
     },
 })
 

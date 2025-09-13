@@ -1,5 +1,4 @@
 import SchemaBuilder from '@pothos/core';
-import { PrismaClient } from '@prisma/client';
 import PrismaPlugin from '@pothos/plugin-prisma';
 import RelayPlugin from '@pothos/plugin-relay';
 import PrismaUtils from '@pothos/plugin-prisma-utils';
@@ -8,11 +7,11 @@ import ScopeAuthPlugin from '@pothos/plugin-scope-auth';
 // customized as described above.
 // Using a type only import will help avoid issues with undeclared
 // exports in esm mode
-import type PrismaTypes from '@pothos/plugin-prisma/generated';
+import type PrismaTypes from '@/pothos/plugin-prisma/generated';
 import { GraphQLJSON } from 'graphql-scalars';
 import { Context } from '@/types/context';
-
-const prisma = new PrismaClient({});
+import { prisma } from "@/lib/prisma"
+import { getDatamodel } from '@/pothos/plugin-prisma/generated';
 
 const builder = new SchemaBuilder<{
     PrismaTypes: PrismaTypes;
@@ -40,6 +39,7 @@ const builder = new SchemaBuilder<{
     relay: { cursorType: 'String', },
     prisma: {
         client: prisma,
+        dmmf: getDatamodel(),
         // defaults to false, uses /// comments from prisma schema as descriptions
         // for object types, relations and exposed fields.
         // descriptions can be omitted by setting description to false

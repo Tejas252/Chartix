@@ -1,6 +1,5 @@
-import { PrismaClient, Role, Visibility } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import { Role, Visibility } from "@/prisma/generated/client";
+import { prisma } from "@/lib/prisma";
 
 /**
  * Check if user can view a chart
