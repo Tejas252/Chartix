@@ -143,6 +143,9 @@ importers:
       '@vercel/analytics':
         specifier: 1.3.1
         version: 1.3.1(next@15.5.0(@opentelemetry/api@1.9.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(react@19.1.1)
+      '@vercel/functions':
+        specifier: ^3.1.0
+        version: 3.1.0(@aws-sdk/credential-provider-web-identity@3.883.0)
       ai:
         specifier: ^5.0.26
         version: 5.0.39(zod@3.25.67)
@@ -2280,6 +2283,9 @@ packages:
   '@types/mapbox__vector-tile@1.3.4':
     resolution: {integrity: sha512-bpd8dRn9pr6xKvuEBQup8pwQfD4VUyqO/2deGjfpe6AwC8YRlyEipvefyRJUSiCJTZuCb8Pl1ciVV5ekqJ96Bg==}
 
+  '@types/ms@2.1.0':
+    resolution: {integrity: sha512-GsCCIZDE/p3i96vtEqx+7dBUGXrc7zeSK3wwPHIaRThS+9OhWIXRqzs4d6k1SVU8g91DrNRWxWUGhp5KXQb2VA==}
+
   '@types/node@20.19.13':
     resolution: {integrity: sha512-yCAeZl7a0DxgNVteXFHt9+uyFbqXGy/ShC4BlcHkoE0AfGXYv/BUiplV72DjMYXHDBXFjhvr6DD1NiRVfB4j8g==}
 
@@ -2482,6 +2488,19 @@ packages:
         optional: true
       react:
         optional: true
+
+  '@vercel/functions@3.1.0':
+    resolution: {integrity: sha512-V+p8dO+sg1VjiJJUO5rYPp1KG17SzDcR74OWwW7Euyde6L8U5wuTMe9QfEOfLTiWPUPzN1MXZvLcYxqSYhKc4Q==}
+    engines: {node: '>= 20'}
+    peerDependencies:
+      '@aws-sdk/credential-provider-web-identity': '*'
+    peerDependenciesMeta:
+      '@aws-sdk/credential-provider-web-identity':
+        optional: true
+
+  '@vercel/oidc@3.0.0':
+    resolution: {integrity: sha512-XOoUcf/1VfGArUAfq0ELxk6TD7l4jGcrOsWjQibj4wYM74uNihzZ9gA46ywWegoqKWWdph4y5CKxGI9823deoA==}
+    engines: {node: '>= 20'}
 
   '@whatwg-node/promise-helpers@1.3.2':
     resolution: {integrity: sha512-Nst5JdK47VIl9UcGwtv2Rcgyn5lWtZ0/mhRQ4G8NN2isxpq2TO30iqHzmwoJycjWuyUfg3GFXqP/gFHXeV57IA==}
@@ -7705,6 +7724,8 @@ snapshots:
       '@types/mapbox__point-geometry': 0.1.4
       '@types/pbf': 3.0.5
 
+  '@types/ms@2.1.0': {}
+
   '@types/node@20.19.13':
     dependencies:
       undici-types: 6.21.0
@@ -7899,6 +7920,17 @@ snapshots:
     optionalDependencies:
       next: 15.5.0(@opentelemetry/api@1.9.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       react: 19.1.1
+
+  '@vercel/functions@3.1.0(@aws-sdk/credential-provider-web-identity@3.883.0)':
+    dependencies:
+      '@vercel/oidc': 3.0.0
+    optionalDependencies:
+      '@aws-sdk/credential-provider-web-identity': 3.883.0
+
+  '@vercel/oidc@3.0.0':
+    dependencies:
+      '@types/ms': 2.1.0
+      ms: 2.1.3
 
   '@whatwg-node/promise-helpers@1.3.2':
     dependencies:

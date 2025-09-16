@@ -1,4 +1,5 @@
 import { PrismaClient } from "@/prisma/generated/client";
+import { attachDatabasePool } from '@vercel/functions'
 import { Pool } from 'pg';
 import { PrismaPg } from '@prisma/adapter-pg';
 
@@ -10,6 +11,8 @@ declare global {
 // Create a connection pool
 const connectionString = process.env.POSTGRES_URL || '';
 const pool = new Pool({ connectionString });
+attachDatabasePool(pool)
+
 const adapter = new PrismaPg(pool);
 
 // Initialize Prisma with the PostgreSQL adapter
